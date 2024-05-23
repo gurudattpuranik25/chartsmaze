@@ -1,0 +1,34 @@
+.faq__container {
+  width: 100%;
+  background-color: #212a31;
+  padding: 4rem 0 2rem 0;
+}
+
+#faq__title {
+  text-align: center;
+  font-size: 3.2rem;
+  color: white;
+}
+
+.faqs {
+  width: 85%;
+  margin: auto;
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.faq {
+  font-size: 1.5rem;
+}
+
+.faq .question {
+  font-weight: 600;
+}
+
+#desclaimer {
+  text-align: center;
+  color: white;
+  margin-top: 4rem;
+}

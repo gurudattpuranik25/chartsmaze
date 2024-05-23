@@ -1,0 +1,21 @@
+.social {
+  position: fixed;
+  top: 36%;
+  right: 0;
+  z-index: 100;
+}
+
+.social__icons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: #c4e6ff;
+  padding: 0.8rem;
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+}
+
+.social__icons img {
+  width: 3rem;
+  height: 3rem;
+}
