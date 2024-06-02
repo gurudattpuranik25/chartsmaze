@@ -66,7 +66,7 @@ const Navbar = () => {
               {" "}
               <MenuItem onClick={handleClose}>
                 {" "}
-                <Link to="/filters">Create Scanner</Link>
+                <Link to="/settings">Create Scanner</Link>
               </MenuItem>{" "}
               <MenuItem onClick={handleClose}>Horizontal Resistance</MenuItem>{" "}
               <MenuItem onClick={handleClose}>Tight Setup</MenuItem>{" "}

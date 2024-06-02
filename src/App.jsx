@@ -1,8 +1,8 @@
 import "./App.css";
-import Filters from "./components/Filters/Filters";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import { Routes, Route } from "react-router-dom";
+import Settings from "./components/Settings/Settings";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/filters" element={<Filters />}></Route>
+        <Route path="/settings" element={<Settings />}></Route>
       </Routes>
     </>
   );

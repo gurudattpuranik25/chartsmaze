@@ -119,3 +119,38 @@
   border-radius: 2rem;
   cursor: pointer;
 }
+
+.sort__settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.sort__option {
+  display: flex;
+  justify-content: space-between;
+  gap: 5rem;
+  font-size: 1.2rem;
+}
+
+.sort__option select {
+  font-size: 1.2rem;
+  padding: 0.5rem 4rem;
+  border-radius: 2rem;
+}
+
+.sort__labels {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.sort__order {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
