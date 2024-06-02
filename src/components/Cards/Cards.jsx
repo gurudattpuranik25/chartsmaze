@@ -1,6 +1,5 @@
 import React from "react";
 import "./cards.css";
-import cardImg_1 from "../../assets/cardImg_1.png";
 import cardImage1 from "../../assets/cardImage1.png";
 import cardImage2 from "../../assets/cardImage2.png";
 import cardImage3 from "../../assets/cardImage3.png";
@@ -65,6 +64,7 @@ const Cards = () => {
         <div className="card__container">
           <div className="card">
             <div className="card__front">
+              {/* <img src={cardImage3} className="card__image" alt="" /> */}
               <img src={cardImage3} className="card__image" alt="" />
               <h1 id="third__heading">CREATE WATCHLIST</h1>
               <p className="card__text">
