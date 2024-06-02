@@ -8,6 +8,7 @@ import analytics from "../../assets/analytics.png";
 import watchlist from "../../assets/file.png";
 import blogs from "../../assets/blog.png";
 import "./navbar.css";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [anchorElScanners, setAnchorElScanners] = useState(null);
@@ -63,7 +64,10 @@ const Navbar = () => {
               }}
             >
               {" "}
-              <MenuItem onClick={handleClose}>Create Scanner</MenuItem>{" "}
+              <MenuItem onClick={handleClose}>
+                {" "}
+                <Link to="/filters">Create Scanner</Link>
+              </MenuItem>{" "}
               <MenuItem onClick={handleClose}>Horizontal Resistance</MenuItem>{" "}
               <MenuItem onClick={handleClose}>Tight Setup</MenuItem>{" "}
               <MenuItem onClick={handleClose}>IPO Scanner</MenuItem>{" "}

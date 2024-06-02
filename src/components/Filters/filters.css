@@ -1,0 +1,121 @@
+.filter__page {
+  width: 80%;
+  height: 90vh;
+  margin: auto;
+  box-shadow: 12px 12px 26px -17px #748d92;
+  border-radius: 2rem;
+  border: 1px solid black;
+}
+
+.filter__section {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section__one {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.section__two {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter__btn {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 0;
+  border-radius: 2rem;
+  border: 2px solid #212a31;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #212a31;
+  color: white;
+}
+
+.filter__icons {
+  width: 2rem;
+  height: 2rem;
+}
+
+.filter__btn > p {
+  font-size: 1.5rem;
+}
+
+.partition {
+  width: 2px;
+  height: 90%;
+  background-color: #212a31;
+}
+
+.filter__options {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-row-gap: 1.5rem;
+}
+
+.option {
+  display: flex;
+  justify-content: space-around;
+}
+
+.label {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.2rem;
+}
+
+.filter__settings {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.toggle__btn {
+  background-color: #212a31;
+  color: white;
+  padding: 0.5rem 2rem;
+  border-radius: 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.filter__settings select {
+  border: none;
+  font-size: 1.2rem;
+  border-bottom: 2px solid #212a31;
+  border-radius: 2rem;
+  padding: 0.5rem 2rem;
+  outline: none;
+}
+
+.action__btn {
+  display: flex;
+  gap: 2rem;
+}
+
+.action__btn button {
+  background: linear-gradient(to right, #212a31, #748d92);
+  color: white;
+  padding: 0.5rem 4rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+}
