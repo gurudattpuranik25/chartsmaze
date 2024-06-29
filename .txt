@@ -38,3 +38,509 @@
     top: -180px;
   }
 } */
+
+****************************************
+
+import ReactFlow, { Background, Controls, MiniMap } from "reactflow";
+import "reactflow/dist/style.css";
+
+const nodes = [
+  {
+    id: "sector",
+    type: "default",
+    data: { label: "Sector" },
+    position: { x: 500, y: 500 },
+  },
+  {
+    id: "A",
+    type: "default",
+    data: { label: "A" },
+    position: { x: 100, y: 100 },
+  },
+  {
+    id: "B",
+    type: "default",
+    data: { label: "B" },
+    position: { x: 100, y: 200 },
+  },
+  {
+    id: "C",
+    type: "default",
+    data: { label: "C" },
+    position: { x: 100, y: 300 },
+  },
+  {
+    id: "D",
+    type: "default",
+    data: { label: "D" },
+    position: { x: 100, y: 400 },
+  },
+  {
+    id: "E",
+    type: "default",
+    data: { label: "E" },
+    position: { x: 100, y: 500 },
+  },
+  {
+    id: "F",
+    type: "default",
+    data: { label: "F" },
+    position: { x: 100, y: 600 },
+  },
+  {
+    id: "G",
+    type: "default",
+    data: { label: "G" },
+    position: { x: 100, y: 700 },
+  },
+  {
+    id: "H",
+    type: "default",
+    data: { label: "H" },
+    position: { x: 100, y: 800 },
+  },
+  {
+    id: "I",
+    type: "default",
+    data: { label: "I" },
+    position: { x: 100, y: 900 },
+  },
+  {
+    id: "J",
+    type: "default",
+    data: { label: "J" },
+    position: { x: 100, y: 1000 },
+  },
+  {
+    id: "K",
+    type: "default",
+    data: { label: "K" },
+    position: { x: 900, y: 100 },
+  },
+  {
+    id: "L",
+    type: "default",
+    data: { label: "L" },
+    position: { x: 900, y: 200 },
+  },
+  {
+    id: "M",
+    type: "default",
+    data: { label: "M" },
+    position: { x: 900, y: 300 },
+  },
+  {
+    id: "N",
+    type: "default",
+    data: { label: "N" },
+    position: { x: 900, y: 400 },
+  },
+  {
+    id: "O",
+    type: "default",
+    data: { label: "O" },
+    position: { x: 900, y: 500 },
+  },
+  {
+    id: "P",
+    type: "default",
+    data: { label: "P" },
+    position: { x: 900, y: 600 },
+  },
+  {
+    id: "Q",
+    type: "default",
+    data: { label: "Q" },
+    position: { x: 900, y: 700 },
+  },
+  {
+    id: "R",
+    type: "default",
+    data: { label: "R" },
+    position: { x: 900, y: 800 },
+  },
+  {
+    id: "S",
+    type: "default",
+    data: { label: "S" },
+    position: { x: 900, y: 900 },
+  },
+  {
+    id: "T",
+    type: "default",
+    data: { label: "T" },
+    position: { x: 900, y: 1000 },
+  },
+];
+
+const edges = [
+  { id: "sector-A", source: "sector", target: "A", type: "smoothstep" },
+  { id: "sector-B", source: "sector", target: "B", type: "smoothstep" },
+  { id: "sector-C", source: "sector", target: "C", type: "smoothstep" },
+  { id: "sector-D", source: "sector", target: "D", type: "smoothstep" },
+  { id: "sector-E", source: "sector", target: "E", type: "smoothstep" },
+  { id: "sector-F", source: "sector", target: "F", type: "smoothstep" },
+  { id: "sector-G", source: "sector", target: "G", type: "smoothstep" },
+  { id: "sector-H", source: "sector", target: "H", type: "smoothstep" },
+  { id: "sector-I", source: "sector", target: "I", type: "smoothstep" },
+  { id: "sector-J", source: "sector", target: "J", type: "smoothstep" },
+  { id: "sector-K", source: "sector", target: "K", type: "smoothstep" },
+  { id: "sector-L", source: "sector", target: "L", type: "smoothstep" },
+  { id: "sector-M", source: "sector", target: "M", type: "smoothstep" },
+  { id: "sector-N", source: "sector", target: "N", type: "smoothstep" },
+  { id: "sector-O", source: "sector", target: "O", type: "smoothstep" },
+  { id: "sector-P", source: "sector", target: "P", type: "smoothstep" },
+  { id: "sector-Q", source: "sector", target: "Q", type: "smoothstep" },
+  { id: "sector-R", source: "sector", target: "R", type: "smoothstep" },
+  { id: "sector-S", source: "sector", target: "S", type: "smoothstep" },
+  { id: "sector-T", source: "sector", target: "T", type: "smoothstep" },
+];
+
+const Flowchart = () => {
+  return (
+    <div style={{ height: "1000vh", width: "80%" }}>
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        nodesDraggable={false}
+        nodesConnectable={false}
+        elementsSelectable={false}
+        panOnDrag={false}
+        zoomOnScroll={false}
+        zoomOnDoubleClick={false}
+        // fitView
+      ></ReactFlow>
+    </div>
+  );
+};
+
+export default Flowchart;
+
+******************************************
+
+import React from "react";
+import ReactFlow, { MiniMap, Controls, Background } from "reactflow";
+import "reactflow/dist/style.css";
+
+const nodeWidth = 150;
+const nodeHeight = 50;
+
+const nodes = [
+  {
+    id: "1",
+    data: { label: "Macro-Sector" },
+    position: { x: 600, y: 50 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  // Row 1
+  {
+    id: "2",
+    data: { label: "Sector 1" },
+    position: { x: 200, y: 200 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  {
+    id: "3",
+    data: { label: "Sector 2" },
+    position: { x: 400, y: 200 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  {
+    id: "4",
+    data: { label: "Sector 3" },
+    position: { x: 600, y: 200 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  {
+    id: "5",
+    data: { label: "Sector 4" },
+    position: { x: 800, y: 200 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  {
+    id: "6",
+    data: { label: "Sector 5" },
+    position: { x: 1000, y: 200 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  // Row 2
+  {
+    id: "7",
+    data: { label: "Sector 6" },
+    position: { x: 300, y: 400 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  {
+    id: "8",
+    data: { label: "Sector 7" },
+    position: { x: 500, y: 400 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  {
+    id: "9",
+    data: { label: "Sector 8" },
+    position: { x: 700, y: 400 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  {
+    id: "10",
+    data: { label: "Sector 9" },
+    position: { x: 900, y: 400 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  {
+    id: "11",
+    data: { label: "Sector 10" },
+    position: { x: 1100, y: 400 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  // Row 3
+  {
+    id: "12",
+    data: { label: "Sector 11" },
+    position: { x: 200, y: 600 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  {
+    id: "13",
+    data: { label: "Sector 12" },
+    position: { x: 400, y: 600 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  {
+    id: "14",
+    data: { label: "Sector 13" },
+    position: { x: 600, y: 600 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  {
+    id: "15",
+    data: { label: "Sector 14" },
+    position: { x: 800, y: 600 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  {
+    id: "16",
+    data: { label: "Sector 15" },
+    position: { x: 1000, y: 600 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  // Row 4
+  {
+    id: "17",
+    data: { label: "Sector 16" },
+    position: { x: 300, y: 800 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  {
+    id: "18",
+    data: { label: "Sector 17" },
+    position: { x: 500, y: 800 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  {
+    id: "19",
+    data: { label: "Sector 18" },
+    position: { x: 700, y: 800 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  {
+    id: "20",
+    data: { label: "Sector 19" },
+    position: { x: 900, y: 800 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+  {
+    id: "21",
+    data: { label: "Sector 20" },
+    position: { x: 1100, y: 800 },
+    style: { width: nodeWidth, height: nodeHeight },
+  },
+];
+
+const edges = [
+  // Connect Macro-Sector to all Sectors
+  { id: "e1-2", source: "1", target: "2", type: "smoothstep" },
+  { id: "e1-3", source: "1", target: "3", type: "smoothstep" },
+  { id: "e1-4", source: "1", target: "4", type: "smoothstep" },
+  { id: "e1-5", source: "1", target: "5", type: "smoothstep" },
+  { id: "e1-6", source: "1", target: "6", type: "smoothstep" },
+  { id: "e1-7", source: "1", target: "7", type: "smoothstep" },
+  { id: "e1-8", source: "1", target: "8", type: "smoothstep" },
+  { id: "e1-9", source: "1", target: "9", type: "smoothstep" },
+  { id: "e1-10", source: "1", target: "10", type: "smoothstep" },
+  { id: "e1-11", source: "1", target: "11", type: "smoothstep" },
+  { id: "e1-12", source: "1", target: "12", type: "smoothstep" },
+  { id: "e1-13", source: "1", target: "13", type: "smoothstep" },
+  { id: "e1-14", source: "1", target: "14", type: "smoothstep" },
+  { id: "e1-15", source: "1", target: "15", type: "smoothstep" },
+  { id: "e1-16", source: "1", target: "16", type: "smoothstep" },
+  { id: "e1-17", source: "1", target: "17", type: "smoothstep" },
+  { id: "e1-18", source: "1", target: "18", type: "smoothstep" },
+  { id: "e1-19", source: "1", target: "19", type: "smoothstep" },
+  { id: "e1-20", source: "1", target: "20", type: "smoothstep" },
+  { id: "e1-21", source: "1", target: "21", type: "smoothstep" },
+];
+
+const App = () => (
+  <div style={{ height: "100vh", width: "100%" }}>
+    <ReactFlow
+      nodes={nodes}
+      edges={edges}
+      fitView
+      nodesDraggable={false}
+      elementsSelectable={false}
+    >
+      <MiniMap />
+      <Controls />
+      <Background />
+    </ReactFlow>
+  </div>
+);
+
+export default App;
+
+****************************************
+
+import React from "react";
+import Tree from "react-d3-tree";
+
+const treeData = {
+  name: "Macro-Sector",
+  children: [
+    {
+      name: "Sector 1",
+      children: [
+        { name: "Industry 1-1" },
+        { name: "Industry 1-2" },
+        { name: "Industry 1-3" },
+      ],
+    },
+    {
+      name: "Sector 2",
+      children: [{ name: "Industry 2-1" }, { name: "Industry 2-2" }],
+    },
+    {
+      name: "Sector 1",
+      children: [
+        { name: "Industry 1-1" },
+        { name: "Industry 1-2" },
+        { name: "Industry 1-3" },
+      ],
+    },
+    {
+      name: "Sector 2",
+      children: [{ name: "Industry 2-1" }, { name: "Industry 2-2" }],
+    },
+    {
+      name: "Sector 1",
+      children: [
+        { name: "Industry 1-1" },
+        { name: "Industry 1-2" },
+        { name: "Industry 1-3" },
+      ],
+    },
+    {
+      name: "Sector 2",
+      children: [{ name: "Industry 2-1" }, { name: "Industry 2-2" }],
+    },
+    {
+      name: "Sector 1",
+      children: [
+        { name: "Industry 1-1" },
+        { name: "Industry 1-2" },
+        { name: "Industry 1-3" },
+      ],
+    },
+    {
+      name: "Sector 2",
+      children: [{ name: "Industry 2-1" }, { name: "Industry 2-2" }],
+    },
+    {
+      name: "Sector 1",
+      children: [
+        { name: "Industry 1-1" },
+        { name: "Industry 1-2" },
+        { name: "Industry 1-3" },
+      ],
+    },
+    {
+      name: "Sector 2",
+      children: [{ name: "Industry 2-1" }, { name: "Industry 2-2" }],
+    },
+    {
+      name: "Sector 1",
+      children: [
+        { name: "Industry 1-1" },
+        { name: "Industry 1-2" },
+        { name: "Industry 1-3" },
+      ],
+    },
+    {
+      name: "Sector 2",
+      children: [{ name: "Industry 2-1" }, { name: "Industry 2-2" }],
+    },
+    {
+      name: "Sector 1",
+      children: [
+        { name: "Industry 1-1" },
+        { name: "Industry 1-2" },
+        { name: "Industry 1-3" },
+      ],
+    },
+    {
+      name: "Sector 2",
+      children: [{ name: "Industry 2-1" }, { name: "Industry 2-2" }],
+    },
+    {
+      name: "Sector 1",
+      children: [
+        { name: "Industry 1-1" },
+        { name: "Industry 1-2" },
+        { name: "Industry 1-3" },
+      ],
+    },
+    {
+      name: "Sector 2",
+      children: [{ name: "Industry 2-1" }, { name: "Industry 2-2" }],
+    },
+    {
+      name: "Sector 1",
+      children: [
+        { name: "Industry 1-1" },
+        { name: "Industry 1-2" },
+        { name: "Industry 1-3" },
+      ],
+    },
+    {
+      name: "Sector 2",
+      children: [{ name: "Industry 2-1" }, { name: "Industry 2-2" }],
+    },
+    {
+      name: "Sector 1",
+      children: [
+        { name: "Industry 1-1" },
+        { name: "Industry 1-2" },
+        { name: "Industry 1-3" },
+      ],
+    },
+    {
+      name: "Sector 2",
+      children: [{ name: "Industry 2-1" }, { name: "Industry 2-2" }],
+    },
+    // Add more sectors and industries as needed
+  ],
+};
+
+const containerStyles = {
+  width: "100%",
+  height: "100vh",
+};
+
+const Flowchart = () => (
+  <div style={containerStyles}>
+    <Tree data={treeData} orientation="vertical" />
+  </div>
+);
+
+export default Flowchart;
