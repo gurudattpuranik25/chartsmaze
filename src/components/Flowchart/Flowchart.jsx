@@ -78,15 +78,17 @@ const containerStyles = {
 const Flowchart = () => (
   <div className="map">
     <div className="map1" style={containerStyles}>
-      <Tree
-        data={treeData}
-        orientation="vertical"
-        depthFactor={-200}
-        // zoomable={false}
-        // draggable={false}
-        collapsible={true}
-        shouldCollapseNeighborNodes={true}
-      />
+      <div className="one">
+        <Tree
+          data={treeData}
+          orientation="vertical"
+          depthFactor={-200}
+          // zoomable={false}
+          // draggable={false}
+          collapsible={true}
+          shouldCollapseNeighborNodes={true}
+        />
+      </div>
     </div>
     <div className="map2" style={containerStyles}>
       <Tree

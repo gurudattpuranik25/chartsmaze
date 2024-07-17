@@ -7,6 +7,8 @@ import ChartRace from "./components/ChartRace/ChartRace";
 import { data_200EMA } from "./utils/200EMA";
 import { data_50EMA } from "./utils/50EMA";
 import Flowchart from "./components/Flowchart/Flowchart";
+import Bar from "./components/Flowchart/Bar";
+import Industry from "./components/Industry/Industry";
 
 function App() {
   return (
@@ -24,7 +26,9 @@ function App() {
             </div>
           }
         ></Route>
-        <Route path="/map" element={<Flowchart />}></Route>
+        {/* <Route path="/map" element={<Flowchart />}></Route> */}
+        <Route path="/map" element={<Bar />}></Route>
+        <Route path="/industry" element={<Industry />}></Route>
       </Routes>
     </>
   );

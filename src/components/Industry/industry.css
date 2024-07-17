@@ -1,0 +1,62 @@
+.industry__page {
+  width: 95%;
+  display: flex;
+  margin: auto;
+  margin-top: 5rem;
+}
+
+.industry__info {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.industry__info > div {
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 0;
+  box-shadow: 0px 8px 64px 0px rgba(211, 217, 212, 1);
+}
+
+.industry__name {
+  background-color: #faffbd;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.number__of__stocks {
+  background-color: #c5f1ff;
+}
+
+.market__cap {
+  background-color: #f5ccff;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.heading__tags {
+  color: #858585;
+}
+
+.info__tags {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.industry__graphs {
+  width: 70%;
+  display: flex;
+  gap: 3rem;
+}
+
+.industry__graphs > div {
+  width: 42%;
+  border-radius: 1rem;
+  box-shadow: 0px 8px 64px 0px rgba(211, 217, 212, 1);
+  padding: 0 1rem;
+}
