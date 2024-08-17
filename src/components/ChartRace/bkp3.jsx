@@ -1,12 +1,12 @@
 import React, { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
 
-const RankDiff = ({ data }) => {
+const ChartRace = ({ data }) => {
   const svgRef = useRef();
   const [initialRanks, setInitialRanks] = useState([]);
   const width = 1000;
   const height = 600;
-  const margin = { top: 20, right: 50, bottom: 40, left: 250 };
+  const margin = { top: 20, right: 30, bottom: 40, left: 250 };
 
   useEffect(() => {
     const svg = d3
@@ -20,21 +20,7 @@ const RankDiff = ({ data }) => {
       .range([margin.top, height - margin.bottom])
       .padding(0.05);
 
-    // Updated custom color palette with dark and distinct colors
-    const colorPalette = [
-      "#003f5c", // Dark Blue
-      "#2f4b7c", // Indigo
-      "#665191", // Purple
-      "#a05195", // Deep Magenta
-      "#d45087", // Red-Pink
-      "#f95d6a", // Coral
-      "#ff7c43", // Orange
-      "#ffa600", // Golden Yellow
-      "#374c80", // Darker Indigo
-      "#8e6c8a", // Muted Purple
-    ];
-
-    const color = d3.scaleOrdinal(colorPalette);
+    const color = d3.scaleOrdinal(d3.schemeCategory10);
 
     // Calculate initial ranks from the first data set
     if (data.length > 0 && initialRanks.length === 0) {
@@ -65,18 +51,15 @@ const RankDiff = ({ data }) => {
         d.dynamicRank = i + 1;
       });
 
-      // Keep only the top 7 ranked industries
-      const top7Data = rankedData.slice(0, 7);
-
       // Update the scales
-      x.domain([0, d3.max(top7Data, (d) => d.value || 0)]);
-      y.domain(top7Data.map((d) => d.name));
+      x.domain([0, d3.max(rankedData, (d) => d.value || 0)]);
+      y.domain(rankedData.map((d) => d.name));
 
       // Bind data to bars
-      const bars = svg.selectAll(".bar").data(top7Data, (d) => d.name);
+      const bars = svg.selectAll(".bar").data(rankedData, (d) => d.name);
 
-      // Exit old elements with smooth transition
-      bars.exit().transition().duration(1000).style("opacity", 0).remove();
+      // Exit old elements not present in new data
+      bars.exit().remove();
 
       // Enter new elements
       const newBars = bars
@@ -86,108 +69,107 @@ const RankDiff = ({ data }) => {
         .attr("x", margin.left)
         .attr("height", y.bandwidth())
         .attr("y", (d) => y(d.name))
-        .attr("width", 0) // Start with width 0
-        .style("fill", (d) => color(d.name))
-        .style("opacity", 0);
+        .attr("width", (d) => x(d.value) - margin.left) // Use initial width
+        .style("fill", (d) => color(d.name)); // Use color scale
 
       // Update existing elements and new elements together
       newBars
         .merge(bars)
         .transition()
         .duration(1000)
-        .style("opacity", 1)
         .attr("y", (d) => y(d.name))
-        .attr("width", (d) => Math.max(x(d.value) - margin.left, 0)) // Ensure width is non-negative
-        .ease(d3.easeCubicInOut); // Use cubic easing for smoother motion
+        .attr("width", (d) => Math.max(x(d.value) - margin.left, 0)); // Ensure width is non-negative
 
       // Bind data to value labels
-      const valueLabels = svg.selectAll(".value").data(top7Data, (d) => d.name);
+      const valueLabels = svg
+        .selectAll(".value")
+        .data(rankedData, (d) => d.name);
 
-      // Exit old elements with smooth transition
-      valueLabels
-        .exit()
-        .transition()
-        .duration(1000)
-        .style("opacity", 0)
-        .remove();
+      // Exit old elements not present in new data
+      valueLabels.exit().remove();
 
       // Enter new elements
       const newValueLabels = valueLabels
         .enter()
         .append("text")
         .attr("class", "value")
-        .attr("x", margin.left) // Start position at the left margin
+        .attr("x", (d) => {
+          const barWidth = x(d.value) - margin.left;
+          return barWidth > 30 ? x(d.value) - 5 : x(d.value) + 5;
+        })
         .attr("y", (d) => y(d.name) + y.bandwidth() / 2)
         .attr("dy", "0.35em")
         .style("fill", "white")
         .style("font-weight", "bold")
-        .attr("text-anchor", "end")
-        .style("opacity", 0);
+        .attr("text-anchor", (d) => {
+          const barWidth = x(d.value) - margin.left;
+          return barWidth > 30 ? "end" : "start";
+        })
+        .text((d) => `${d.value} (${d.initialRank})`);
 
       // Update existing elements and new elements together
       newValueLabels
         .merge(valueLabels)
         .transition()
         .duration(1000)
-        .style("opacity", 1)
-        .attr("x", (d) => Math.max(x(d.value) - 10, margin.left + 10)) // Position inside the bar
+        .attr("x", (d) => {
+          const barWidth = x(d.value) - margin.left;
+          return barWidth > 30 ? x(d.value) - 5 : x(d.value) + 5;
+        })
         .attr("y", (d) => y(d.name) + y.bandwidth() / 2)
+        .attr("text-anchor", (d) => {
+          const barWidth = x(d.value) - margin.left;
+          return barWidth > 30 ? "end" : "start";
+        })
         .tween("text", function (d) {
-          const i = d3.interpolate(this.textContent, d.value);
+          const i = d3.interpolate(this.textContent.split(" ")[0], d.value);
           return function (t) {
-            this.textContent = `${Math.round(i(t))}`; // Update value only
+            this.textContent = `${Math.round(i(t))} (${d.initialRank})`;
           };
         });
 
       // Bind data to rank labels
-      const rankLabels = svg.selectAll(".rank").data(top7Data, (d) => d.name);
+      const rankLabels = svg.selectAll(".rank").data(rankedData, (d) => d.name);
 
-      // Exit old elements with smooth transition
-      rankLabels
-        .exit()
-        .transition()
-        .duration(1000)
-        .style("opacity", 0)
-        .remove();
+      // Exit old elements not present in new data
+      rankLabels.exit().remove();
 
       // Enter new elements
       const newRankLabels = rankLabels
         .enter()
         .append("text")
         .attr("class", "rank")
-        .attr("x", margin.left) // Start position at the left margin
+        .attr("x", (d) => x(d.value) + 10) // Position just after the end of the bar
         .attr("y", (d) => y(d.name) + y.bandwidth() / 2)
         .attr("dy", "0.35em")
         .style("fill", "black")
         .style("font-weight", "bold")
-        .attr("text-anchor", "start")
-        .style("opacity", 0);
+        .attr("text-anchor", "start");
 
       // Update existing elements and new elements together
       newRankLabels
         .merge(rankLabels)
         .transition()
         .duration(1000)
-        .style("opacity", 1)
         .attr("x", (d) => x(d.value) + 10) // Position just after the end of the bar
         .attr("y", (d) => y(d.name) + y.bandwidth() / 2)
         .tween("text", function (d) {
           const i = d3.interpolate(
-            parseFloat(this.textContent.split("(")[0]) || 0,
+            parseFloat(this.textContent) || 0,
             d.dynamicRank
           );
           return function (t) {
-            this.textContent = `${Math.round(i(t))} (${d.initialRank})`; // Display dynamic and initial ranks
+            this.textContent = isNaN(i(t)) ? "" : Math.round(i(t)); // Handle NaN
           };
         });
 
       // Bind data to y-axis labels
-      const yLabels = svg.selectAll(".y-label").data(top7Data, (d) => d.name);
+      const yLabels = svg.selectAll(".y-label").data(rankedData, (d) => d.name);
 
-      // Exit old elements with smooth transition
-      yLabels.exit().transition().duration(1000).style("opacity", 0).remove();
+      // Exit old elements not present in new data
+      yLabels.exit().remove();
 
-      // Enter new y-axis labels
+      // Enter new elements
       const newYLabels = yLabels
         .enter()
         .append("text")
@@ -197,16 +179,14 @@ const RankDiff = ({ data }) => {
         .attr("dy", "0.35em")
         .attr("text-anchor", "end")
         .style("fill", "black")
-        .style("opacity", 0);
+        .text((d) => d.name);
 
-      // Update existing y-axis labels and new labels together
+      // Update existing elements and new elements together
       newYLabels
         .merge(yLabels)
         .transition()
         .duration(1000)
-        .style("opacity", 1)
-        .attr("y", (d) => y(d.name) + y.bandwidth() / 2)
-        .text((d) => d.name);
+        .attr("y", (d) => y(d.name) + y.bandwidth() / 2);
 
       // Day labels
       svg.selectAll(".day-label").remove(); // Remove old day labels
@@ -250,4 +230,4 @@ const RankDiff = ({ data }) => {
   return <svg ref={svgRef}></svg>;
 };
 
-export default RankDiff;
+export default ChartRace;
